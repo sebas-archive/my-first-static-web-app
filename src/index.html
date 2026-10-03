@@ -1,17 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Vanilla JavaScript App</title>
+  <title>Guía #8 - Azure Static Web Apps</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #0f172a; color: #e2e8f0;
+           display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+    .card { background: #1e293b; padding: 2rem 2.5rem; border-radius: 16px; max-width: 520px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.4); }
+    h1 { color: #38bdf8; margin-top: 0; }
+    ul { line-height: 1.8; }
+    .api { margin-top: 1.5rem; padding: 1rem; background: #0f172a; border-left: 4px solid #22c55e;
+           border-radius: 8px; font-family: monospace; }
+    small { color: #94a3b8; }
+  </style>
 </head>
-
 <body>
-  <main>
-    <h1>Vanilla JavaScript App</h1>
-  </main>
+  <div class="card">
+    <h1>Guía #8 realizada por:</h1>
+    <ul>
+      <li>Miguel Eduardo Angulo Cantor</li>
+      <li>Karol Asley Orjuela Mape</li>
+      <li>Juan David Gómez Rojas</li>
+      <li>Sebastián Fernando Revelo Meneses</li>
+    </ul>
+    <small>Sistemas Operativos · Universidad Manuela Beltrán</small>
+    <div class="api">
+      <strong>Respuesta de la API:</strong><br>
+      <span id="msg">Cargando...</span><br>
+      <small id="fecha"></small>
+    </div>
+  </div>
+  <script>
+    fetch('https://func-guia8-sebas.azurewebsites.net/api/message')
+      .then(r => r.json())
+      .then(d => {
+        document.getElementById('msg').textContent = d.text;
+        document.getElementById('fecha').textContent = d.fecha;
+      })
+      .catch(() => document.getElementById('msg').textContent = 'Error al llamar la API');
+  </script>
 </body>
-
 </html>
